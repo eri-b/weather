@@ -3,8 +3,43 @@
   <head>
     <meta charset="utf-8">
     <title>Weather Church</title>
+    <style>
+    html, body{
+      margin:0;
+      padding:0;
+      font-family: sans-serif;
+    }
+    div{
+      display:flex;
+      flex-direction: column;
+      padding:5vh;
+      justify-content:space-around;
+      align-items: center;
+      height:90vh;
+
+    }
+    p{
+      border:1px solid black;
+    }
+    a{
+      padding:40px;
+      display:inline-block;
+      background:lightyellow;
+
+      letter-spacing: .05em;
+      font-size:16px;
+      text-decoration: none;
+    }
+    a:hover{
+      background:pink;
+    }
+    </style>
   </head>
   <body>
-    <p>Testing 123</p>
+    <div>
+      <p><a href="suntoday">Sun Today</a></p>
+      <p><a href="simple">Simple</a></p>
+      <p><a href="numerology">Numerology</a></p>
+  </div>
   </body>
 </html>
