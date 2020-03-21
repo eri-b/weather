@@ -16,7 +16,7 @@ var current;
 
 
 $.getJSON('http://api.ipstack.com/check?access_key=b0173b76f3a64ad0ca9a80b984ce0ea9&format=1', function(data) {
-  ipCity = data.city ", " data.region_name;
+  ipCity = data.city + ", " + data.region_name;
   console.log(data);
   lat = data.latitude;
   lon = data.longitude;
