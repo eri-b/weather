@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+ 	<meta charset="utf-8">
+ 	<title>Weather Starter</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="assets/sun.png"/>
+	<style>
+
+   	*{box-sizing: border-box;}
+   	html{font-size:12px;}
+  	body{font-family: sans-serif; padding:0; margin:0; width:100%; min-height:100%;letter-spacing:.05em;
+/*  		background: url('images/sun.jpg');
+  		background-size: cover;
+  		background-position: center center;
+  		background-repeat: no-repeat;*/
+  	}
+
+	header > div{ display:inline-block; margin-right:50px; }
+  	header{padding:20px; border-bottom:1px solid black; background:rgba(255,255,255,1); }
+
+
+  	input[type="text"]{border:1px solid black; height:18px;}
+  	button{
+  		border:1px solid black;
+  		background:white;
+  		border-radius:2px;
+  		height:18px;
+  		position: relative;
+    	top: -1px;
+      cursor: pointer;
+  	}
+    button:hover{background-color:gold;}
+
+  	#input{float:right;}
+  	.time{height:5vh; border-bottom:1px solid black;}
+  	#content{position:relative;}
+  	.line{position:absolute; width:100vw; left:0; height:1px; border-top:2px dotted black; z-index:2;}
+
+  	#setL .span{  background:gold; /*-webkit-font-smoothing:antialiased;*/ font-weight:;}
+
+  	.time{ position:relative;}
+  	.time .lev{position:absolute; right:20px; top:10px;}
+  	.time .label{position: absolute; left:20px; top:10px;}
+  	.ampm{font-size:9px; margin-left:2px;}
+  	.line .span{position:absolute; left:50%; transform:translateX(-50%);  padding:5px 10px; top:-14px;}
+  	.sunny{background-color:gold; /*background-image:url('images/sun5.png');*/}
+  	/*.time:nth-of-type(2){background:red !important;}*/
+  	#content{overflow:hidden;}
+
+  	#overlay{position:absolute;
+  		top:50%; left:50%; transform:translate(-50%, -50%);
+  		background:rgba(255,255,255,.9);
+  		z-index:9;
+  		border:1px solid black;
+  		opacity:0;
+
+  		transition:1s;
+  		box-shadow:0px 3px 15px rgba(0,0,0,0.2);
+  		padding:8vh 10vw;
+  		white-space: nowrap;
+  		/*-webkit-backface-visibility: hidden;
+  		-webkit-font-smoothing: subpixel-antialiased;*/
+  		font-size:14px;
+  	}
+
+  	#overlay.in{opacity:1;}
+  	#overlay li{margin:1vh 0;}
+  	.vspace{padding-left:1vw; margin:3vh 0;}
+  	.lev{display:none;}
+
+  	#close{position:absolute; top: 10px; right:10px; color:#777; cursor:pointer;}
+  	#info{cursor:pointer; position:relative; top:-2px; left:10px; color:navy;}
+  	#infobox{display:none; position:absolute; top:10px; right:10px; background:white; padding:15px 20px; border:1px solid black; z-index:4;}
+  	#infoclose{position:absolute; top:5px; cursor:pointer; padding:2px; display:inline-block; right:5px; color:blue; font-size:9px;}
+
+  	@media screen and (max-width: 1000px){
+		header > div{ display:block; margin-right:0px; margin-bottom:10px;}
+		header > div.nm{display:inline-block; margin-right:15px;}
+		#input{float:none;}
+		#overlay{transform:translate(-50%,0); top:auto; bottom:10vh;padding:2vh 3vw; font-size:11px;}
+		.hidem{display:none;}
+  	}
+
+
+  </style>
+</head>
+
+<body>
+<header>
+
+	<div id="location"></div>
+	<div id="time" class="nm"><span class="t"></span></div>
+	<div id="day" class="nm"><span class="t"></span></div>
+	<div id="date" class="nm"><span class="t"></span></div>
+	<div id="rise" class="hidem">Sunrise: <span class="t"></span></div>
+	<div id="set">Sunset: <span class="t"></span></div>
+
+	<div id="input">
+	<input id="newCity" type="text"/>
+	<button>Go</button>
+	<a id="info">?</a>
+	</div>
+	<div id="infobox">
+		<p>Data provided via <a href="http://darksky.net" target="_blank">DarkSky API</a>.</p>
+		<p class="vspace">~</p>
+
+
+		<p>Site by <a href="http://unfoundedlabs.com" target="blank">Unfounded Labs</a></p>
+		<a id="infoclose">	&#x2716;</a>
+	</div>
+</header>
+
+<div id="content">
+
+
+
+</div>
+
+<div id="overlay">
+	<p>When the sky is clear the sun appears</p>
+	<p class="vspace">~</p>
+	<p>Today there will be sun at:</p>
+	<ul>
+
+	</ul>
+	<p class="vspace">~</p>
+	<p>Have a nice day</p>
+	<!-- <span id="close">x</span> -->
+</div>
+
+<script src="assets/jq.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu3pt1wyNQEbfJygfls0j2gOmIaI-5x8M"
+  type="text/javascript"></script>
+<script src="assets/date.js"></script>
+
+<script src="assets/suntoday.js" type="text/javascript"></script>
+
+</body>
+
+
+</html>
