@@ -16,8 +16,7 @@ var current;
 
 
 $.getJSON('http://api.ipstack.com/check?access_key=b0173b76f3a64ad0ca9a80b984ce0ea9&format=1', function(data) {
-  ipCity = data.city;
-  ipCity = data.region_name;
+  ipCity = data.city ", " data.region_name;
   console.log(data);
   lat = data.latitude;
   lon = data.longitude;
@@ -26,8 +25,8 @@ $.getJSON('http://api.ipstack.com/check?access_key=b0173b76f3a64ad0ca9a80b984ce0
     lat = "40.7128";
     lon = "-74.0060";
   }
-  
-}).done(function() { 
+
+}).done(function() {
   $(" #current input[type='text']").attr('value', ipCity);
     // Lat/Lng should have appeared from IP address
     findWeather();
@@ -39,7 +38,7 @@ $.getJSON('http://api.ipstack.com/check?access_key=b0173b76f3a64ad0ca9a80b984ce0
     // Lat/Lng should have appeared from IP address
     findWeather();
     $('#loc span').html(ipCity); // City
-    document.title = 'Weather Numerology - '+ ipCity;  
+    document.title = 'Weather Numerology - '+ ipCity;
 });
 
 
@@ -60,17 +59,17 @@ function findWeather() {
         temp = pdata.currently.temperature;
         temp = Math.round(temp);
         condition = pdata.currently.summary;//Condition
-        
+
         console.log(pdata)
-        
+
         var temp2 = temp + "&deg;";
         $('#temp span').html(temp2); // temp
-        $('#cond span').html(condition); // condition   
-        
-        
+        $('#cond span').html(condition); // condition
+
+
     }
-  });	
-  
+  });
+
 }
 
 
@@ -92,9 +91,9 @@ $('#numWeather a.btn#match').on('click', function(){
   $('#calcs').show();
   evalSystem(ipCity, temp, condition);
 });
- 
+
 $('#numWeather a.btn#calcbtn').on('click', function(){
-   
+
    calc();
   $('#numWeather a.btn#calcbtn').hide();
 });
@@ -115,20 +114,20 @@ function calc(){
       newLoc += temLoc[i]
     }
     else{
-      newLoc += temLoc[i] + " <span class='b'>+</span> ";  
-    } 
+      newLoc += temLoc[i] + " <span class='b'>+</span> ";
+    }
     sum += parseInt(temLoc[i]);
   }
 
   var temLoc = $('#numLoc div.rdata').append("<div><span class='b3'>&#x2192;</span>"+newLoc+"<span class='b b2'>=</span>"+ sum+"</div>");
-  
+
 
   //Save sums for later
 
   sums[0] = sum;
   totalSum += sum;
 
-  
+
 
   // TEMP
   var newTem="";
@@ -138,8 +137,8 @@ function calc(){
       newTem += temTem[i];
     }
     else{
-      newTem += temTem[i] + " <span class='b'>+</span> ";  
-    } 
+      newTem += temTem[i] + " <span class='b'>+</span> ";
+    }
     sum += parseInt(temTem[i]);
   }
 
@@ -158,8 +157,8 @@ function calc(){
       newCon += temCon[i]
     }
     else{
-      newCon += temCon[i] + " <span class='b'>+</span> ";  
-    } 
+      newCon += temCon[i] + " <span class='b'>+</span> ";
+    }
     sum += parseInt(temCon[i]);
   }
 
@@ -168,57 +167,57 @@ function calc(){
   //Save sums for later
   sums[2] = sum;
   totalSum += sum;
-  
 
-  
-  
+
+
+
   setTimeout(function(){
     $('#numWeather #ag').show();
     $('#numWeather #ag div').html(sums[0]+" <span class='b'>+</span> " + sums[1] + " <span class='b'>+</span> " +sums[2]+"<span class='b b2'>=</span><span id='tot'>"+ totalSum+"</span>");
     //see if more calcs are needed
     moreCalcs(totalSum);
   },1500);
-  
-  
-  
+
+
+
 
 }
 
 function moreCalcs(totalSum){
-  
+
   var newSum = 0;
-  
+
   if((totalSum > 9) && (totalSum != 11) && (totalSum != 22)){
-    
-    
-    
+
+
+
     //add them up
     totalSum = totalSum.toString();
-    
+
     var expr = " <span class='b3'>&#x2192;</span> " + totalSum.charAt(0);
 
     for (var i = 0; i < totalSum.length; i++) {
-      
+
       var num = totalSum.charAt(i);
       num = parseInt(num);
       newSum += num;
 
       // tell story
       if(i != 0){expr += " <span class='b'>+</span> " + totalSum.charAt(i);}
-      
-  
-    } 
 
-    
+
+    }
+
+
     $('#numWeather #ag span#tot').append(expr + "<span class='b b2'> = </span>"+newSum);
-    
+
     totalSum = newSum;
 
     if((newSum > 9) && (newSum != 11) && (newSum != 22)){
       //recursive call
-    moreCalcs(newSum);  
+    moreCalcs(newSum);
     }
-    
+
 
   }
 
@@ -231,10 +230,10 @@ function moreCalcs(totalSum){
     $('#numer p').html(reports[totalSum - 1]);
     $('#contactbtn').show();
     // $('.calcsteps').slideUp();
-    
-    
+
+
   }, 1000);
-  
+
 }
 
 $('#contactbtn').on('click', function(){
@@ -242,7 +241,7 @@ $('#contactbtn').on('click', function(){
     $('#numer').addClass('in');
     $('header').addClass('fade');
     $('#cont').addClass('noheight');
-    
+
 })
 
 
@@ -265,14 +264,14 @@ var numerReps =[
 var intro = "Hello,<br><br>Considering your location, weather, and time, your numerological sign is "
 for (var i = 0; i < 11; i++) {
 	if(i==9){reports[i]= intro + "<span>11</span>.<br><br>"+ numerReps[i];}
-	
+
 	else if(i==10){
 		reports[i]= intro + "<span>22</span>.<br><br>"+ numerReps[i];
 	}
 	else{
 		reports[i]= intro + "<span>"+ (i+1) +"</span>.<br><br>"+ numerReps[i];
 	}
-	
+
 }
 
 
@@ -301,7 +300,7 @@ function createSystem(system){
 
 
   // if(str.includes("BROKEN")){points+= 3;}
- 
+
 }
 
 function evalSystem(region, temp, cond ){
@@ -317,7 +316,7 @@ function evalSystem(region, temp, cond ){
   for (var i = 0; i < region.length; i++) {
     var char = region.charAt(i);
     var str = char.toUpperCase();
-    
+
     // See if character is in row (will return -1 if not)
     var a = row1.indexOf(str);
     var b = row2.indexOf(str);
@@ -326,21 +325,21 @@ function evalSystem(region, temp, cond ){
     // will return the index of the only positive entry
     var ind = Math.max(a,b,c);
     ind = system[0][ind];
-    
+
     // this creates a string of the winning entries
     if( ind > -1 ){
       ind = ind.toString();
       numLoc += ind;
     }
 
-  }  
+  }
    $('#numLoc div').html(numLoc);
-  
-  
+
+
 
 
   //Temperature
-  
+
   setTimeout(function(){$('#numTemp div').html(temp);}, 1000);
 
   //condition
@@ -348,7 +347,7 @@ function evalSystem(region, temp, cond ){
   for (var i = 0; i < cond.length; i++) {
     var char = cond.charAt(i);
     var str = char.toUpperCase();
-    
+
     var a = row1.indexOf(str);
     var b = row2.indexOf(str);
     var c = row3.indexOf(str);
@@ -363,19 +362,19 @@ function evalSystem(region, temp, cond ){
 
   }
 
-  setTimeout(function(){ dance(); }, 2000);  
+  setTimeout(function(){ dance(); }, 2000);
   setTimeout(function(){ $('#numCond div').html(numCond); }, 3000);
-  
-  
+
+
    setTimeout(function(){ $('#calcbtn').show(); }, 4000);  // show calc btn
-    
+
 }
 
 function dance(){
 
-  
+
   var rowTd = [1,3,4,2,3,4,2,3,2];
-  
+
   var colTd = [5,3,2,4,6,7,4,3,1];
 
 
@@ -388,7 +387,7 @@ function dance(){
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[6]+') td:nth-child('+colTd[6]+')').addClass('d1');}, 600);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[7]+') td:nth-child('+colTd[7]+')').addClass('d1');}, 700);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[8]+') td:nth-child('+colTd[8]+')').addClass('d1');}, 800);
-  
+
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[0]+') td:nth-child('+colTd[0]+')').removeClass('d1');}, 900);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[1]+') td:nth-child('+colTd[1]+')').removeClass('d1');}, 1000);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[2]+') td:nth-child('+colTd[2]+')').removeClass('d1');}, 1100);
@@ -398,8 +397,8 @@ function dance(){
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[6]+') td:nth-child('+colTd[6]+')').removeClass('d1');}, 1500);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[7]+') td:nth-child('+colTd[7]+')').removeClass('d1');}, 1600);
   setTimeout(function(){ $('#system table tr:nth-child('+rowTd[8]+') td:nth-child('+colTd[8]+')').removeClass('d1');}, 1700);
-  
-  
+
+
 }
 
 var now = new Date();
@@ -427,4 +426,3 @@ $('table td:nth-child(' + ($(this).index() + 1) + ')').addClass('hover');
 function () {
 $('table td:nth-child(' + ($(this).index() + 1) + ')').removeClass('hover');
 });
-
