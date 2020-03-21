@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+ 	<meta charset="utf-8">
+ 	<title>Now Later</title>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="simple/sunny.png"/>
+  <link rel="apple-touch-icon" href="appleicon.png">
+	<style>
+  html, body{height:100%; margin:0; padding:0;}
+  body{font-family: sans-serif; font-size:12px; }
+
+
+   #content{opacity:1; transition:.3s;
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+
+    z-index:2;
+    white-space: nowrap;
+   }
+   #content.in{opacity:1;}
+
+   #content div{display:inline-block;}
+   #content div span{display:inline-block; padding:20px; border-bottom:0px solid purple;}
+   #content strong{font-size:5vw; margin:50px; margin-right:70px;}
+
+   footer{position:absolute; bottom:0; border-top:1px solid black; width:100%;}
+   footer div{ display:inline-block; padding:10px; margin-right:20px;}
+   #f-ctn{margin-left:50%; transform:translateX(-50%); white-space: nowrap;}
+
+
+   #temp{font-size:24vw;}
+   #hi, #lo{font-size:6vw; position:relative; top:-2vh;}
+   #lo{margin-right:9vw;}
+   #hi{margin-left:4vw;}
+
+
+   #form button{background:none; cursor:pointer; color:#555;}
+   #form button:hover{color:black;}
+   input[type="text"] {color:#777; width:100px; text-align: center;}
+  input[type="text"]:focus {color:black;}
+   #a2{display:none;}
+
+   button{position:relative; top:-1px; left:5px;}
+
+   a{text-decoration: none; color:black;}
+   a:hover{font-weight:bold;}
+   a#credits{position:absolute; bottom:20px; right:20px; cursor:pointer;}
+   #info{position:absolute; bottom:10px; right:10px; padding:10px; background:rgba(255,255,255,1); border:1px solid black; display:none;}
+   #info a{color:#0000ee;}
+   button{display:none;}
+   @media (max-width: 800px) and (orientation: landscape){
+   	input[type='text']{font-size: 16px;}
+   	#content{top:0; text-align: center; transform:translate(-50%,0);}
+   	footer div{margin-right:5px;}
+   }
+
+   @media (max-width: 800px) and (orientation: portrait){
+    button{padding: 4px; top:-2px;}
+    #a2{display:inline;}
+    #a1{display:none;}
+    footer div{display:block; padding:5px; }
+    #f-ctn{margin-left:10px; transform: translateX(0);}
+    #content div{display:block; }
+    #content{top:0%; text-align: center; transform:translate(-50%,0);}
+
+    #temp{font-size:34vw;}
+    #hi, #lo{font-size:14vw;}
+
+    #hi, #lo{top:0vh;left:-3vw;}
+   #lo{margin-right:0;}
+   #hi{margin-left:0;}
+   #content div span{padding:3vw; padding-left: 6vw;}
+    input[type='text']{font-size: 16px;}
+   }
+
+
+
+  </style>
+</head>
+
+<body>
+
+
+<div id="content">
+  <div id="lo"><span title="Low"></span></div>
+  <div id="temp"><span title="Now"></span></div>
+  <!-- <strong id="a1"></strong>
+  <strong id="a2"></strong> -->
+  <div id="hi"><span title="High"></span></div>
+</div>
+
+<footer>
+  <div id="f-ctn">
+  <div id="condition"></div>
+  <div id="location"></div>
+  <div id="date"></div>
+
+
+  <div id="form">
+    <input id="newCity" type="text" value="..."/>
+    <button>Go</button>
+  </div>
+  </div>
+
+</footer>
+<a id="credits">&#x3f;</a>
+<div id="info">
+Daily Low, <strong>Current</strong>, Daily High<br><br>
+Site by <a href="http://unfoundedlabs.com" target="_blank">UNFL</a>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu3pt1wyNQEbfJygfls0j2gOmIaI-5x8M"
+  type="text/javascript"></script>
+<!-- <script src="http://stevenlevithan.com/assets/misc/date.format.js"></script> -->
+<script src="simple/date.js"></script>
+<script src="simple/site.js" type="text/javascript"></script>
+
+</body>
+
+
+</html>
