@@ -60,7 +60,8 @@ var curtime = Math.round((new Date()).getTime() / 1000); //unix timestamp
 
 //Finds Weather for any given Lat/lon Darksky
 function findWeather() {
-  url = "https://api.darksky.net/forecast/d5d98e87f7b5cfc3cacc4f0539238087/"+lat+","+lon+"?exclude=minutely,hourly,alerts,flags";
+  url_old = "https://api.darksky.net/forecast/d5d98e87f7b5cfc3cacc4f0539238087/"+lat+","+lon+"?exclude=minutely,hourly,alerts,flags";
+  url = "https://api.pirateweather.net/forecast/rcmjZwdspRKfOFmX/"+lat+","+lon
   // Dark Sky
   $.ajax({
     url: url,
