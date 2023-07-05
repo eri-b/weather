@@ -56,7 +56,7 @@ function findWeather() {
   // Dark Sky
   $.ajax({
     url: url,
-    dataType: "jsonp",
+    dataType: "json",
     success: function (pdata) {
         temp = pdata.currently.temperature;
         temp = Math.round(temp);
