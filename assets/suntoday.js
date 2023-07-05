@@ -212,7 +212,7 @@ function findWeather() {
   // Dark Sky
   $.ajax({
     url: url,
-    dataType: "jsonp",
+    dataType: "json",
     success: function (pdata) {
     	// console.log(pdata);
 
